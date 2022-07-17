@@ -15,4 +15,3 @@ CREATE TABLE `registration` (
 
 
 INSERT INTO `registration` (`code`,`start_date`,`project_name`,`project_type`,`technologies`,`status_`,`annotations`,`completion_date`) VALUES ('COD-05','15/07/2022','Projeto teste','html','java','ok','teste de lancamento','16/07/2022');
-
