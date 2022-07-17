@@ -5,6 +5,7 @@ from tkinter import ttk
 from tkinter import messagebox
 import tkinter as tk
 import mysql.connector as mysql
+
 #connection for phpmyadmin
 def connection():
     conn = mysql.connect(
@@ -91,7 +92,7 @@ def add():
             conn.commit()
             conn.close()
         except:
-            messagebox.showinfo("Error", "Stud ID already exist")
+            messagebox.showinfo("Error", "Project Code already exist")
             return
 
     refreshTable()
@@ -190,11 +191,11 @@ def search():
         messagebox.showinfo("Error", "No data found")
 
 def update():
-    selectedid = ""
+    selectedcode = " "
 
     try:
         selected_item = my_tree.selection()[0]
-        selectedid = str(my_tree.item(selected_item)['values'][0])
+        selectedcode = str(my_tree.item(selected_item)['values'][0])
     except:
         messagebox.showinfo("Error", "Please select a data row")
 
@@ -226,7 +227,7 @@ def update():
             conn.commit()
             conn.close()
         except:
-            messagebox.showinfo("Error", "Stud ID already exist")
+            messagebox.showinfo("Error", "Project code already exist")
             return
 
     refreshTable()
@@ -244,16 +245,16 @@ annotationsLabel = Label(root, text="Annotations", font=('Arial', 20))
 completion_dateLabel = Label(root, text="Date Conclusion", font=('Arial', 20))
 
 
-codeLabel.grid(row=4, column=0, columnspan=1, padx=50, pady=5)
-start_dateLabel.grid(row=5, column=0, columnspan=1, padx=50, pady=5)
-project_nameLabel.grid(row=6, column=0, columnspan=1, padx=50, pady=5)
-project_typeLabel.grid(row=7, column=0, columnspan=1, padx=50, pady=5)
-technologiesLabel.grid(row=8, column=0, columnspan=1, padx=50, pady=5)
-status_Label.grid(row=9, column=0, columnspan=1, padx=50, pady=5)
-annotationsLabel.grid(row=10, column=0, columnspan=1, padx=50, pady=5)
-completion_dateLabel.grid(row=11, column=0, columnspan=1, padx=50, pady=5)
+codeLabel.grid(row=4, column=0, columnspan=2, padx=50, pady=5)
+start_dateLabel.grid(row=5, column=0, columnspan=2, padx=50, pady=5)
+project_nameLabel.grid(row=6, column=0, columnspan=2, padx=50, pady=5)
+project_typeLabel.grid(row=7, column=0, columnspan=2, padx=50, pady=5)
+technologiesLabel.grid(row=8, column=0, columnspan=2, padx=50, pady=5)
+status_Label.grid(row=9, column=0, columnspan=2, padx=50, pady=5)
+annotationsLabel.grid(row=10, column=0, columnspan=2, padx=50, pady=5)
+completion_dateLabel.grid(row=11, column=0, columnspan=2, padx=50, pady=5)
 
-codeEntry = Entry(root, width=55, bd=5, font=('Arial', 15), textvariable = ph1)
+codeEntry = Entry(root,width=55, bd=5, font=('Arial', 15), textvariable = ph1)
 start_dateEntry = Entry(root, width=55, bd=5, font=('Arial', 15), textvariable = ph2)
 project_nameEntry = Entry(root, width=55, bd=5, font=('Arial', 15), textvariable = ph3)
 project_typeEntry = Entry(root, width=55, bd=5, font=('Arial', 15), textvariable = ph4)
@@ -273,44 +274,44 @@ completion_dateEntry.grid(row=11, column=1, columnspan=4, padx=5, pady=0)
 
 addBtn = Button(
     root, text="Add", padx=65, pady=25, width=10,
-    bd=5, font=('Arial', 18), background="#84F894", command=add)
+    bd=5, font=('Arial', 18), command=add)
 updateBtn = Button(
     root, text="Update", padx=65, pady=25, width=10,
-    bd=5, font=('Arial', 18), bg="#84E8F8", command=update)
+    bd=5, font=('Arial', 18),  command=update)
 deleteBtn = Button(
     root, text="Delete", padx=65, pady=25, width=10,
-    bd=5, font=('Arial', 18), bg="#FF9999", command=delete)
+    bd=5, font=('Arial', 18),  command=delete)
 searchBtn = Button(
     root, text="Search", padx=65, pady=25, width=10,
-    bd=5, font=('Arial', 18), bg="#F4FE82", command=search)
+    bd=5, font=('Arial', 18), command=search)
 resetBtn = Button(
     root, text="Reset", padx=65, pady=25, width=10,
-    bd=5, font=('Arial', 18), bg="#F398FF", command=reset)
+    bd=5, font=('Arial', 18), command=reset)
 selectBtn = Button(
     root, text="Select", padx=65, pady=25, width=10,
-    bd=5, font=('Arial', 18), bg="#EEEEEE", command=select)
+    bd=5, font=('Arial', 18), command=select)
 
 addBtn.grid(row=3, column=5, columnspan=1, rowspan=2)
 updateBtn.grid(row=5, column=5, columnspan=1, rowspan=2)
 deleteBtn.grid(row=7, column=5, columnspan=1, rowspan=2)
 searchBtn.grid(row=9, column=5, columnspan=1, rowspan=2)
 resetBtn.grid(row=11, column=5, columnspan=1, rowspan=2)
-selectBtn.grid(row=11, column=5, columnspan=1, rowspan=2)
+selectBtn.grid(row=13, column=5, columnspan=1, rowspan=2)
 
 style = ttk.Style()
-style.configure("Treeview.Heading", font=('Arial Bold', 18))
+style.configure("Treeview.Heading", font=('Arial Bold', 14))
 
 my_tree['columns'] = ("code","start_date","project_name","project_type","technologies","status_","annotations","completion_date")
 
 my_tree.column("#0", width=0, stretch=NO)
-my_tree.column("code", anchor=W, width=100)
-my_tree.column("start_date", anchor=W, width=150)
-my_tree.column("project_name", anchor=W, width=300)
-my_tree.column("project_type", anchor=W, width=165)
+my_tree.column("code", anchor=W, width=80)
+my_tree.column("start_date", anchor=W, width=100)
+my_tree.column("project_name", anchor=W, width=250)
+my_tree.column("project_type", anchor=W, width=80)
 my_tree.column("technologies", anchor=W, width=150)
 my_tree.column("status_", anchor=W, width=150)
-my_tree.column("annotations", anchor=W, width=150)
-my_tree.column("completion_date", anchor=W, width=150)
+my_tree.column("annotations", anchor=W, width=300)
+my_tree.column("completion_date", anchor=W, width=120)
 
 my_tree.heading("code", text="Code", anchor=W)
 my_tree.heading("start_date", text="Start Date", anchor=W)
