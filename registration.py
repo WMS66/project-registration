@@ -81,14 +81,14 @@ def add():
     annotations = str(annotationsEntry.get())
     completion_date = str(completion_dateEntry.get())
 
-    if (code == "" or code == " ")(start_date == "" or start_date == " ") or (project_name == "" or project_name == " ") or (project_type == "" or project_type == " ") or (technologies == "" or technologies == " ")or (status_ == "" or status_ == " ")or (annotations == "" or annotations == " ")or (completion_date == "" or completion_date == " "):
+    if (code == "" or code == " ") or (start_date == "" or start_date == " ") or (project_name == "" or project_name == " ") or (project_type == "" or project_type == " ") or (technologies == "" or technologies == " ") or (status_ == "" or status_ == " ") or (annotations == "" or annotations == " ") or (completion_date == "" or completion_date == " "):
         messagebox.showinfo("Error", "Please fill up the blank entry")
         return
     else:
         try:
             conn = connection()
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO registration VALUES ('"+code+"','"+start_date+"','"+project_name+"','"+project_type+"','"+technologies+"','"+status_+"','"+annotations+"','"+completion_date+"')")
+            cursor.execute("INSERT INTO registration VALUES ('"+code+"','"+start_date+"','"+project_name+"','"+project_type+"','"+technologies+"','"+status_+"','"+annotations+"','"+completion_date+"') ")
             conn.commit()
             conn.close()
         except:
