@@ -81,7 +81,7 @@ def add():
     annotations = str(annotationsEntry.get())
     completion_date = str(completion_dateEntry.get())
 
-    if (start_date == "" or start_date == " ") or (project_name == "" or project_name == " ") or (project_type == "" or project_type == " ") or (technologies == "" or technologies == " ")or (status_ == "" or status_ == " ")or (annotations == "" or annotations == " ")or (completion_date == "" or completion_date == " "):
+    if (code == "" or code == " ")(start_date == "" or start_date == " ") or (project_name == "" or project_name == " ") or (project_type == "" or project_type == " ") or (technologies == "" or technologies == " ")or (status_ == "" or status_ == " ")or (annotations == "" or annotations == " ")or (completion_date == "" or completion_date == " "):
         messagebox.showinfo("Error", "Please fill up the blank entry")
         return
     else:
@@ -191,7 +191,7 @@ def search():
         messagebox.showinfo("Error", "No data found")
 
 def update():
-    selectedcode = " "
+    selectedcode = ""
 
     try:
         selected_item = my_tree.selection()[0]
@@ -208,22 +208,25 @@ def update():
     annotations = str(annotationsEntry.get())
     completion_date = str(completion_dateEntry.get())
 
-    if (start_date == "" or start_date == " ") or (project_name == "" or project_name == " ") or (project_type == "" or project_type == " ") or (technologies == "" or technologies == " ")or (status_ == "" or status_ == " ")or (annotations == "" or annotations == " ")or (completion_date == "" or completion_date == " "):
+    if (code ==""or code== " ")or(start_date == "" or start_date == " ") or (project_name == "" or project_name == " ") or (project_type == "" or project_type == " ") or (technologies == "" or technologies == " ") or (status_ == "" or status_ == " ") or (annotations == "" or annotations == " ") or (completion_date == "" or completion_date == " "):
         messagebox.showinfo("Error", "Please fill up the blank entry")
         return
     else:
         try:
             conn = connection()
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM registration WHERE  code='"+
-            code+"' or start_date='"+
-            start_date+"' or project_name='"+
-            project_name+"' or project_type='"+
-            project_type+"' or technologies='"+
-            technologies+"' or status_='"+
-            status_+"' or annotations='"+
-            annotations+"' or completion_date='"+
-            completion_date+"'")
+            cursor.execute(
+                "Update registration SET code='"+
+                code+"' , start_date='"+
+                start_date+"' , project_name='"+
+                project_name+"' , project_type='"+
+                project_type+"' , technologies='"+
+                technologies+"' , status_='"+
+                status_+"' , annotations='"+
+                annotations+"' , completion_date='"+
+                completion_date+"' WHERE code='"+
+                selectedcode + "' "
+            )
             conn.commit()
             conn.close()
         except:
@@ -301,7 +304,7 @@ selectBtn.grid(row=13, column=5, columnspan=1, rowspan=2)
 style = ttk.Style()
 style.configure("Treeview.Heading", font=('Arial Bold', 14))
 
-my_tree['columns'] = ("code","start_date","project_name","project_type","technologies","status_","annotations","completion_date")
+my_tree['columns'] = ("code", "start_date", "project_name", "project_type", "technologies", "status_", "annotations", "completion_date")
 
 my_tree.column("#0", width=0, stretch=NO)
 my_tree.column("code", anchor=W, width=80)
