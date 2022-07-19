@@ -10,10 +10,10 @@ import mysql.connector as mysql
 def connection():
     conn = mysql.connect(
         host='localhost',
-        port='8889',
-        user='root', 
-        password='root',
-        database='db_ProjectRegistration',
+        port='', #       >>> add local port
+        user='', #       >>> add your root
+        password='', #   >>> add your password
+        database='', #   >>> add the database
     )
     return conn
 
@@ -32,7 +32,7 @@ root.title("Project Registration System")
 root.geometry("1920x1080")
 my_tree = ttk.Treeview(root)
 
-#placeholders for entry
+# >>> placeholders for entry  >>> 
 ph1 = tk.StringVar()
 ph2 = tk.StringVar()
 ph3 = tk.StringVar()
@@ -42,8 +42,7 @@ ph6 = tk.StringVar()
 ph7 = tk.StringVar()
 ph8 = tk.StringVar()
 
-
-#placeholder set value function
+#   >>> placeholder set value function  >>> 
 def setph(word,num):
     if num ==1:
         ph1.set(word)
@@ -120,7 +119,7 @@ def delete():
         return 
     else:
         selected_item = my_tree.selection()[0]
-        deleteData = str(my_tree.item(selected_item)['VALUES'][0])
+        deleteData = str(my_tree.item(selected_item)['values'][0])
         try:
             conn = connection()
             cursor = conn.cursor()
