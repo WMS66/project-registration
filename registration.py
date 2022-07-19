@@ -6,7 +6,7 @@ from tkinter import messagebox
 import tkinter as tk
 import mysql.connector as mysql
 
-#connection for phpmyadmin
+#connection for MySql
 def connection():
     conn = mysql.connect(
         host='localhost',
@@ -120,7 +120,7 @@ def delete():
         return 
     else:
         selected_item = my_tree.selection()[0]
-        deleteData = str(my_tree.item(selected_item)['values'][0])
+        deleteData = str(my_tree.item(selected_item)['VALUES'][0])
         try:
             conn = connection()
             cursor = conn.cursor()
