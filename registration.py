@@ -10,9 +10,9 @@ import mysql.connector as mysql
 def connection():
     conn = mysql.connect(
         host='localhost',
-        port='8889', #       >>> add local port
+        port='', #       >>> add local port
         user='root', #       >>> add your root
-        password='root', #   >>> add your password
+        password='', #   >>> add your password
         database='db_ProjectRegistration', #   >>> add the database
     )
     return conn
